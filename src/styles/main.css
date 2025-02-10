@@ -1,0 +1,13 @@
+.mainSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+   
+}
+.card {
+    width: 200px;
+    height: 150px;
+    background-color: aquamarine;
+    margin: 5px;
+    border-radius: 10px;
+    justify-items: center;
+}
