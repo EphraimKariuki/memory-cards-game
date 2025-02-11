@@ -1,8 +1,16 @@
-function CardItem({cardImage, cardTitle}){
+import { useState } from "react";
+
+function CardItem({cardId, cardImage, cardTitle, onclick}){
+
+   
+
+    
+
+
     return (
-        <div className="card">
+        <div className="card" key={cardId} onClick={onclick} >
             <img src={cardImage} alt="" className="cardImage"/>
-            <div className="cardTitle">{cardTitle}</div>
+            <div className="cardTitle" >{cardTitle}</div>
         </div>
     );
 }

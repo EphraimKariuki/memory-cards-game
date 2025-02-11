@@ -5,6 +5,11 @@ function MainSection(){
 
     const [pokemonDetails, setPokemonDetails] = useState([]);
 
+    const [highestScore, setHighestScore] = useState(0);
+    const [score, setScore] = useState(0);
+    const [clickedCards, setClickedcards] = useState([]);
+    
+
     async function getData(){
 
         const limit = 16;
@@ -42,12 +47,47 @@ function MainSection(){
         getData();
     }, []);
 
+    function handleClick (cardId) {
+        console.log( clickedCards.includes(cardId));
+        const scoreElement = document.getElementById("score");
+        const bestScore = document.getElementById("bestScore");
+        
+        if ( clickedCards.includes(cardId)){
+            if (score > highestScore){
+                setHighestScore(score)
+                bestScore.textContent = `${score}`
+               
+            } else {
+                setScore(0);
+                setClickedcards([]);     
+            };
+            
+            scoreElement.textContent = 0;
+             
+            
+           
+        } else {
+            const currentScore = score + 1;
+            scoreElement.textContent = `${currentScore}`
+            bestScore.textContent = `${highestScore}`
+            setScore(currentScore);
+            setClickedcards([...clickedCards, cardId]);
+
+            
+        };
+        
+        
+       
+        console.log(`Score: ${score}`);
+        console.log(`Highest score: ${highestScore}`);
+        console.log(clickedCards)
+    };
 
     
     return (
         <div className="mainSection">
             {pokemonDetails.map((detail) => (
-                <CardItem key={detail.id} cardImage={detail.sprite} cardTitle={detail.name}/>
+                <CardItem key={detail.id} cardImage={detail.sprite} cardTitle={detail.name} cardId={detail.id}  onclick={()=> {handleClick(detail.id)}}/>
             
             ))}
         
