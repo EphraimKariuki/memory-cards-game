@@ -12,7 +12,7 @@ function MainSection(){
 
     async function getData(){
 
-        const limit = 16;
+        const limit = 8;
         const randomStart = Math.floor(Math.random() * 150);
 
         const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${randomStart}`;
@@ -20,7 +20,7 @@ function MainSection(){
         try {
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
+           
 
             const details = await Promise.all(
                 data.results.map(async (item) => {
@@ -52,14 +52,8 @@ function MainSection(){
         getData();
     }, []);
 
-    // useEffect(() => {
-    //     reshuffle(pokemonDetails);
-    // }, [pokemonDetails]);
-
-  
 
     function handleClick (cardId) {
-        console.log( clickedCards.includes(cardId));
         const scoreElement = document.getElementById("score");
         const bestScore = document.getElementById("bestScore");
         
