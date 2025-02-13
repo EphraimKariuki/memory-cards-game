@@ -43,9 +43,20 @@ function MainSection(){
         
     }
 
+    function reshuffle(details){
+        const reshuffledDetails = [...details].sort(() => 0.5 - Math.random()); 
+        setPokemonDetails(reshuffledDetails);
+    }
+
     useEffect(() => {
         getData();
     }, []);
+
+    // useEffect(() => {
+    //     reshuffle(pokemonDetails);
+    // }, [pokemonDetails]);
+
+  
 
     function handleClick (cardId) {
         console.log( clickedCards.includes(cardId));
@@ -75,12 +86,7 @@ function MainSection(){
 
             
         };
-        
-        
-       
-        console.log(`Score: ${score}`);
-        console.log(`Highest score: ${highestScore}`);
-        console.log(clickedCards)
+        reshuffle(pokemonDetails);
     };
 
     
